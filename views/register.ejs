@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Trade+Winds&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/dd409ee73c.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/styles/reset.css" />
+    <link rel="stylesheet" href="/styles/form.css" />
+    <title>Upbase | Register</title>
+  </head>
+  <body>
+    <main>
+      <form action="/register" method="post">
+        <header>
+          <h1 class="title">Sign Up</h1>
+          <p class="description">Just a few quick things to get started</p>
+        </header>
+        <fieldset>
+          <legend class="visually-hidden">Register Information</legend>
+          <div class="form-field">
+            <label for="display-name-input">Display Name</label>
+            <input
+              aria-describedby="display-name-error"
+              maxlength="50"
+              value="<%= oldData?.displayName || '' %>"
+              name="displayName"
+              type="text"
+              id="display-name-input"
+              placeholder="Enter Display Name"
+              autocomplete="name"
+              aria-invalid="<%= errors?.displayName ? 'true' : 'false' %>"
+              required
+            />
+            <% if (errors?.displayName) { %>
+            <p id="display-name-error" class="field-error">
+              <%= errors.displayName.msg %>
+            </p>
+            <% } %>
+          </div>
+          <div class="form-field">
+            <label for="username-input">Username</label>
+            <input
+              aria-describedby="username-error"
+              minlength="5"
+              maxlength="20"
+              value="<%= oldData?.username || '' %>"
+              name="username"
+              type="text"
+              id="username-input"
+              placeholder="Enter Username"
+              autocomplete="username"
+              aria-invalid="<%= errors?.username ? 'true' : 'false' %>"
+              required
+            />
+            <% if (errors?.username) { %>
+            <p id="username-error" class="field-error">
+              <%= errors.username.msg %>
+            </p>
+            <% } %>
+          </div>
+          <div class="form-field">
+            <label for="password-input">Password</label>
+            <input
+              aria-describedby="password-error"
+              name="password"
+              type="password"
+              id="password-input"
+              placeholder="Enter Password"
+              autocomplete="new-password"
+              minlength="8"
+              aria-invalid="<%= errors?.password ? 'true' : 'false' %>"
+              required
+            />
+            <% if (errors?.password) { %>
+            <p id="password-error" class="field-error">
+              <%= errors.password.msg %>
+            </p>
+            <% } %>
+          </div>
+          <div class="form-field">
+            <label for="confirm-password-input">Confirm Password</label>
+            <input
+              aria-describedby="confirm-password-error"
+              name="confirmPassword"
+              type="password"
+              id="confirm-password-input"
+              placeholder="Enter Confirm Password"
+              autocomplete="new-password"
+              minlength="8"
+              aria-invalid="<%= errors?.confirmPassword ? 'true' : 'false' %>"
+              required
+            />
+            <% if (errors?.confirmPassword) { %>
+            <p id="confirm-password-input" class="field-error">
+              <%= errors.confirmPassword.msg %>
+            </p>
+            <% } %>
+          </div>
+        </fieldset>
+        <button type="submit" class="submit-btn">Sign Up</button>
+        <p class="redirect-link">
+          Already have an account?
+          <a href="/login">Login</a>
+        </p>
+      </form>
+    </main>
+  </body>
+</html>

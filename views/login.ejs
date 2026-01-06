@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Trade+Winds&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/dd409ee73c.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/styles/reset.css" />
+    <link rel="stylesheet" href="/styles/form.css" />
+    <title>Upbase | Login</title>
+  </head>
+  <body>
+    <main>
+      <form action="/login" method="post">
+        <header>
+          <h1 class="title">Log In</h1>
+          <p class="description">Welcome back, you've been missed</p>
+        </header>
+        <fieldset>
+          <legend class="visually-hidden">Log In Information</legend>
+          <div class="form-field">
+            <label for="username-input">Username</label>
+            <input
+              aria-describedby="username-error"
+              value="<%= oldData?.username || '' %>"
+              name="username"
+              type="text"
+              id="username-input"
+              placeholder="Enter Username"
+              autocomplete="username"
+              minlength="5"
+              maxlength="20"
+              required
+            />
+            <% if (errors?.username) { %>
+            <p id="username-error" class="field-error">
+              <%= errors.username.msg %>
+            </p>
+            <% } %>
+          </div>
+          <div class="form-field">
+            <label for="password-input">Password</label>
+            <input
+              name="password"
+              type="password"
+              id="password-input"
+              placeholder="Enter Password"
+              autocomplete="current-password"
+              minlength="8"
+              required
+            />
+            <% if (errors?.password) { %>
+            <p class="field-error"><%= errors.password.msg %></p>
+            <% } %>
+          </div>
+        </fieldset>
+        <% if (errors?.auth) { %>
+        <div class="form-error" role="alert" aria-live="assertive">
+          <%= errors.auth.msg %>
+        </div>
+        <% } %>
+        <button type="submit" class="submit-btn">Log In</button>
+        <p class="redirect-link">
+          Don't have an account?
+          <a href="/register">Register</a>
+        </p>
+      </form>
+    </main>
+  </body>
+</html>

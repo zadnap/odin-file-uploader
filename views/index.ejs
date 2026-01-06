@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Trade+Winds&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/dd409ee73c.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/styles/reset.css" />
+    <link rel="stylesheet" href="/styles/index.css" />
+    <title>Upbase | Home</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <a class="home-link" href="/" aria-label="Go to homepage">
+          <img class="logo" src="/assets/logo.png" alt="Upbase logo" />
+          <span class="app-name">Upbase</span>
+        </a>
+      </div>
+      <nav class="menu" aria-label="Primary navigation">
+        <% if (currentUser) { %>
+        <ul class="user-menu">
+          <li>
+            <div class="membership"><%= currentUser.membershipStatus %></div>
+          </li>
+          <li>
+            <div class="username <%= currentUser.membershipStatus %>">
+              @<%= currentUser.username %>
+            </div>
+          </li>
+          <li>
+            <form action="/logout" method="post">
+              <button type="submit" class="logout-btn">Log Out</button>
+            </form>
+          </li>
+        </ul>
+        <% } else { %>
+        <ul class="auth-nav">
+          <li><a class="nav-link sign-up-btn" href="/register">Sign Up</a></li>
+          <li><a class="nav-link log-in-btn" href="/login">Log In</a></li>
+        </ul>
+        <% } %>
+      </nav>
+    </header>
+    <main>
+      <h1 class="visually-hidden">Home page</h1>
+    </main>
+  </body>
+  <script src="/scripts/index.js"></script>
+</html>

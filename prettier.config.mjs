@@ -14,4 +14,5 @@ export default {
   htmlWhitespaceSensitivity: "css",
   endOfLine: "auto",
   embeddedLanguageFormatting: "auto",
+  plugins: ["prettier-plugin-ejs"],
 };

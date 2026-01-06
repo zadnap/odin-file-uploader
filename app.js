@@ -1,13 +1,16 @@
-import "dotenv/config";
-import express from "express";
-import expressSession from "express-session";
-import path from "path";
-import passport from "passport";
-import { fileURLToPath } from "url";
-import { PrismaPg } from "@prisma/adapter-pg";
-import { PrismaClient } from "./generated/prisma/client.js";
-import { PrismaSessionStore } from "@quixo3/prisma-session-store";
-import "./config/passport.js";
+import 'dotenv/config';
+import express from 'express';
+import expressSession from 'express-session';
+import path from 'path';
+import passport from 'passport';
+import { fileURLToPath } from 'url';
+import { PrismaPg } from '@prisma/adapter-pg';
+import { PrismaClient } from './generated/prisma/client.js';
+import { PrismaSessionStore } from '@quixo3/prisma-session-store';
+import './config/passport.js';
+import loginRouter from './routes/loginRouter.js';
+import registerRouter from './routes/registerRouter.js';
+import indexRouter from './routes/indexRouter.js';
 
 const app = express();
 
@@ -18,11 +21,11 @@ const connectionString = `${process.env.DATABASE_URL}`;
 const adapter = new PrismaPg({ connectionString });
 const prisma = new PrismaClient({ adapter });
 
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static('public'));
 app.use(
   expressSession({
     cookie: {
@@ -36,13 +39,17 @@ app.use(
       dbRecordIdIsSessionId: true,
       dbRecordIdFunction: undefined,
     }),
-  }),
+  })
 );
 app.use(passport.session());
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
   next();
 });
+
+app.use('/', indexRouter);
+app.use('/login', loginRouter);
+app.use('/register', registerRouter);
 
 app.listen(process.env.EXPRESS_PORT, (error) => {
   if (error) {
