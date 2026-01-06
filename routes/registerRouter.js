@@ -1,8 +1,20 @@
 import express from 'express';
-import { getRegister } from '../controllers/registerController.js';
+import {
+  getRegister,
+  handleRegisterValidator,
+  postRegister,
+} from '../controllers/registerController.js';
+import redirectIfAuthenticated from '../middleware/redirectIfAuthenticated.js';
+import registerValidator from '../validators/registerValidator.js';
 
 const registerRouter = express.Router();
 
-registerRouter.get('/', getRegister);
+registerRouter.get('/', redirectIfAuthenticated, getRegister);
+registerRouter.post(
+  '/',
+  registerValidator,
+  handleRegisterValidator,
+  postRegister
+);
 
 export default registerRouter;

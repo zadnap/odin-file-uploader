@@ -11,6 +11,7 @@ import './config/passport.js';
 import loginRouter from './routes/loginRouter.js';
 import registerRouter from './routes/registerRouter.js';
 import indexRouter from './routes/indexRouter.js';
+import logoutRouter from './routes/logoutRouter.js';
 
 const app = express();
 
@@ -50,6 +51,7 @@ app.use((req, res, next) => {
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
+app.use('/logout', logoutRouter);
 
 app.listen(process.env.EXPRESS_PORT, (error) => {
   if (error) {
