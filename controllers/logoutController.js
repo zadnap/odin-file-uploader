@@ -6,7 +6,7 @@ const postLogout = (req, res, next) => {
       if (err) return next(err);
 
       res.clearCookie('connect.sid');
-      res.redirect('/');
+      res.redirect('/login');
     });
   });
 };

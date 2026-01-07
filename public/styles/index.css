@@ -11,9 +11,7 @@ body {
   justify-content: space-between;
   gap: 15px;
   padding: 15px 30px;
-  border-bottom: 1px solid #b1122765;
   background-color: var(--overlay-color);
-  box-shadow: 0 2px 5px 2px #b1122765;
 }
 
 .home-link {
@@ -28,8 +26,8 @@ body {
 }
 
 .app-name {
-  font-family: 'Trade Winds', system-ui;
   font-size: 2rem;
+  font-weight: 600;
   color: var(--primary-color);
   letter-spacing: 4px;
   text-transform: uppercase;

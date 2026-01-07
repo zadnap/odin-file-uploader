@@ -25,10 +25,9 @@ header {
 }
 
 .title {
-  font-family: 'Trade Winds', system-ui;
   color: var(--primary-color);
   font-size: 3rem;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 4px;
 }
@@ -75,7 +74,6 @@ input[aria-invalid='true'] {
 }
 
 .submit-btn {
-  font-family: 'Trade Winds', system-ui;
   border-radius: 5px;
   padding: 10px;
   background-color: var(--primary-color);
@@ -84,10 +82,6 @@ input[aria-invalid='true'] {
   text-transform: uppercase;
   letter-spacing: 4px;
   transition: letter-spacing ease 0.2s;
-}
-
-.submit-btn:hover {
-  letter-spacing: 5px;
 }
 
 .redirect-link {
