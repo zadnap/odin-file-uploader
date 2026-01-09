@@ -95,6 +95,451 @@ main {
   position: relative;
   flex: 1;
   overflow-y: auto;
-  padding: 10px;
   display: flex;
+  padding: 10px 0;
+}
+
+.sidebar {
+  flex: 1;
+  padding: 10px;
+}
+
+.create-section .button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+.create-btn {
+  cursor: pointer;
+  display: flex;
+  padding: 7px 5px;
+  border: 1px solid var(--text-color);
+  border-radius: 5px;
+  font-size: 1.4rem;
+  transition:
+    background-color ease 0.1s,
+    color ease 0.1s;
+}
+
+.create-btn:hover {
+  color: var(--background-color);
+  background-color: var(--text-color);
+}
+
+.create-btn i {
+  width: 30px;
+}
+
+.doc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.doc-item {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-left: 2px solid transparent;
+  transition:
+    background-color ease 0.1s,
+    border-color ease 0.1s;
+}
+
+.doc-item:hover {
+  background-color: var(--overlay-color);
+  border-color: var(--text-color);
+}
+
+.doc-item.active {
+  background-color: var(--overlay-color);
+  border-color: var(--primary-color);
+}
+
+.doc-item a {
+  display: block;
+  padding: 10px;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.doc-section {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  flex: 4;
+  gap: 10px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.breadcrumb a {
+  padding: 7px 10px;
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color ease 0.1s;
+  border: 1px solid var(--overlay-color);
+}
+
+.breadcrumb a:hover {
+  background-color: var(--overlay-color);
+}
+
+.file-section {
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+}
+
+.file-header {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  font-size: 1.5rem;
+}
+
+.file-header-column {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color ease 0.1s;
+}
+
+.file-header-column:hover {
+  background-color: var(--overlay-color);
+}
+
+.sort-icons span {
+  display: none;
+}
+
+.file-header-column.descending .down {
+  display: block;
+}
+.file-header-column.descending .up {
+  display: none;
+}
+
+.file-header-column.ascending .up {
+  display: block;
+}
+.file-header-column.ascending .down {
+  display: none;
+}
+
+.file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow-y: auto;
+  padding-right: 3px;
+  scrollbar-gutter: stable;
+}
+
+.file-row {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr;
+  font-size: 1.4rem;
+  border: 1px solid var(--overlay-color);
+  border-radius: 5px;
+  transition: background-color ease 0.1s;
+}
+
+.file-row.active {
+  background-color: var(--overlay-color);
+}
+
+.file-row-column {
+  padding: 10px;
+}
+
+.file-row:hover {
+  background-color: var(--overlay-color);
+}
+
+.file-name {
+  display: flex;
+  gap: 7px;
+}
+
+.details {
+  flex: 1.5;
+  padding: 15px;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--overlay-color);
+}
+
+.details header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.detail-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.close-detail-btn {
+  cursor: pointer;
+  font-size: 1.4rem;
+  padding: 7px;
+  border: 1px solid var(--overlay-color);
+  border-radius: 4px;
+  transition: background-color ease 0.1s;
+}
+
+.close-detail-btn:hover {
+  background-color: var(--overlay-color);
+}
+
+.file-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.file-detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.file-detail-item dt {
+  font-weight: 600;
+}
+
+.file-detail-item dd {
+  font-size: 1.5rem;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+.file-action-btn {
+  font-size: 1.4rem;
+  padding: 7px 10px;
+  border-radius: 5px;
+  border: 1px solid var(--overlay-color);
+  cursor: pointer;
+  transition:
+    background-color ease 0.1s,
+    color ease 0.1s;
+}
+
+.file-action-btn:hover {
+  background-color: var(--overlay-color);
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+  animation: fadeIn ease 0.2s;
+}
+
+.modal[hidden] {
+  display: none;
+}
+
+.modal-content {
+  border: 1px solid var(--overlay-color);
+  background-color: var(--background-color);
+  padding: 1.5rem;
+  border-radius: 5px;
+  max-width: 500px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: zoomOut ease 0.2s;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-field input {
+  padding: 7px 10px;
+  border: 1px solid var(--overlay-color);
+  border-radius: 5px;
+  transition: border ease 0.2s;
+}
+
+.form-field:not(.radio-field) input:focus {
+  border-color: var(--primary-color);
+}
+
+.file-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.file-control {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid var(--overlay-color);
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.file-control:hover {
+  background-color: var(--overlay-color);
+}
+
+.file-trigger {
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 7px 10px;
+  border-radius: 5px;
+}
+
+.file-display {
+  padding: 7px 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.radio-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.radio-group {
+  display: flex;
+  gap: 8px;
+}
+
+.radio-option {
+  cursor: pointer;
+  padding: 8px 14px;
+  border-radius: 5px;
+  border: 1px solid var(--overlay-color);
+  user-select: none;
+  transition: background-color ease 0.1s;
+}
+
+.radio-option:hover {
+  background-color: var(--overlay-color);
+}
+
+.radio-option:has(input:checked) {
+  background-color: var(--overlay-color);
+}
+
+.copy-field {
+  display: flex;
+  align-items: stretch;
+  font-size: 1.4rem;
+}
+
+.copy-input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid var(--overlay-color);
+  border-radius: 8px 0 0 8px;
+  color: var(--text-color);
+  border-right: none;
+  transition: background-color ease 0.1s;
+}
+
+.copy-input:focus {
+  outline: none;
+  background-color: var(--overlay-color);
+}
+
+.copy-btn {
+  cursor: pointer;
+  padding: 0 16px;
+  border: 1px solid var(--overlay-color);
+  border-radius: 0 8px 8px 0;
+  background: var(--primary);
+  transition: background-color ease 0.1s;
+}
+
+.copy-btn:hover {
+  background-color: var(--overlay-color);
+}
+
+.field-error {
+  font-size: 1.4rem;
+  color: var(--secondary-color);
+}
+
+.button-group {
+  display: flex;
+  gap: 5px;
+}
+
+.form-btn {
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 7px 10px;
+  border: 1px solid var(--overlay-color);
+  transition: background-color ease 0.1s;
+}
+
+.form-btn:hover {
+  background-color: var(--overlay-color);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.6;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomOut {
+  from {
+    opacity: 0.6;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

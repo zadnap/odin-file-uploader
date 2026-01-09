@@ -56,7 +56,9 @@
           </li>
           <li>
             <form action="/logout" method="post">
-              <button type="submit" class="logout-btn">Log Out</button>
+              <button type="submit" class="logout-btn" aria-label="Log out">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              </button>
             </form>
           </li>
         </ul>
@@ -70,7 +72,368 @@
     </header>
     <main>
       <h1 class="visually-hidden">Home page</h1>
+      <aside class="sidebar">
+        <section aria-labelledby="create-section-title" class="create-section">
+          <h2 id="create-section-title" class="visually-hidden">
+            Create Section
+          </h2>
+          <div class="button-group" role="group" aria-label="File actions">
+            <button id="new-folder-btn" class="create-btn">
+              <i class="fa-solid fa-folder"></i><span>New Folder</span>
+            </button>
+            <button id="new-file-btn" class="create-btn">
+              <i class="fa-solid fa-paperclip"></i><span>New File</span>
+            </button>
+          </div>
+          <ul class="doc-list">
+            <li class="doc-item active"><a href="/my-docs">My Documents</a></li>
+            <li class="doc-item">
+              <a href="/shared-with-me">Shared With Me</a>
+            </li>
+          </ul>
+        </section>
+      </aside>
+      <section aria-labelledby="doc-section-title" class="doc-section">
+        <h2 id="doc-section-title" class="visually-hidden">Document Section</h2>
+        <nav class="breadcrumb" aria-label="breadcrumb">
+          <a href="/">Home</a>
+          <i class="fa-solid fa-arrow-right-long"></i>
+          <a href="/my-docs">My Documents</a>
+          <i class="fa-solid fa-arrow-right-long"></i>
+          <a href="/my-docs/12">Siuuuuuu</a>
+        </nav>
+        <section class="file-section" aria-labelledby="file-section-title">
+          <h3 id="file-section-title" class="visually-hidden">
+            File and folder list
+          </h3>
+          <div class="file-header">
+            <div class="file-header-column">
+              <span>Name</span>
+              <div class="sort-icons">
+                <span class="down">
+                  <i class="fa-solid fa-caret-up"></i>
+                </span>
+                <span class="up">
+                  <i class="fa-solid fa-caret-down"></i>
+                </span>
+              </div>
+            </div>
+            <div class="file-header-column">
+              <span>Size</span>
+              <div class="sort-icons">
+                <span class="down">
+                  <i class="fa-solid fa-caret-up"></i>
+                </span>
+                <span class="up">
+                  <i class="fa-solid fa-caret-down"></i>
+                </span>
+              </div>
+            </div>
+            <div class="file-header-column">
+              <span>Author</span>
+              <div class="sort-icons">
+                <span class="down">
+                  <i class="fa-solid fa-caret-up"></i>
+                </span>
+                <span class="up">
+                  <i class="fa-solid fa-caret-down"></i>
+                </span>
+              </div>
+            </div>
+            <div class="file-header-column">
+              <span>Created</span>
+              <div class="sort-icons">
+                <span class="down">
+                  <i class="fa-solid fa-caret-up"></i>
+                </span>
+                <span class="up">
+                  <i class="fa-solid fa-caret-down"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+          <ul class="file-list">
+            <li class="file-row">
+              <div class="file-row-column">
+                <i class="fa-regular fa-image"></i>
+                <span>screenshot-1.jpg</span>
+              </div>
+              <div class="file-row-column">107 kB</div>
+              <div class="file-row-column">zadnap</div>
+              <div class="file-row-column">Jan 5, 2026</div>
+            </li>
+            <li class="file-row active">
+              <div class="file-row-column">
+                <i class="fa-regular fa-image"></i>
+                <span>screenshot-1.jpg</span>
+              </div>
+              <div class="file-row-column">107 kB</div>
+              <div class="file-row-column">zadnap</div>
+              <div class="file-row-column">Jan 5, 2026</div>
+            </li>
+            <li class="file-row">
+              <div class="file-row-column">
+                <i class="fa-regular fa-folder"></i>
+                <span>Projects</span>
+              </div>
+              <div class="file-row-column">99 kB</div>
+              <div class="file-row-column">zadnap</div>
+              <div class="file-row-column">Jan 2, 2026</div>
+            </li>
+          </ul>
+        </section>
+      </section>
+      <aside
+        aria-labelledby="file-info-title"
+        aria-hidden="false"
+        class="details"
+      >
+        <header>
+          <h2 id="file-info-title" class="detail-title">File Information</h2>
+          <button
+            aria-label="Close file detail section"
+            class="close-detail-btn"
+          >
+            <i class="fa-solid fa-angles-right"></i>
+          </button>
+        </header>
+        <section class="detail-section">
+          <dl class="file-details">
+            <div class="file-detail-item">
+              <dt>Name</dt>
+              <dd>Screenshot (59).png</dd>
+            </div>
+            <div class="file-detail-item">
+              <dt>Type</dt>
+              <dd>image/png</dd>
+            </div>
+            <div class="file-detail-item">
+              <dt>Author</dt>
+              <dd>zadnap</dd>
+            </div>
+            <div class="file-detail-item">
+              <dt>Size</dt>
+              <dd>107 kB</dd>
+            </div>
+          </dl>
+        </section>
+        <div class="button-group" role="group" aria-label="File actions">
+          <button id="share-btn" class="file-action-btn">Share</button>
+          <button id="delete-btn" class="file-action-btn">Delete</button>
+          <button id="download-btn" class="file-action-btn">Download</button>
+        </div>
+      </aside>
     </main>
+    <div
+      id="create-folder-modal"
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="create-folder-title"
+      aria-hidden="true"
+      hidden
+    >
+      <div class="modal-content">
+        <h2 id="create-folder-title" class="modal-title">Create New Folder</h2>
+        <form
+          action="/folders"
+          method="post"
+          class="create-form"
+          id="create-folder-form"
+        >
+          <div class="form-field">
+            <label for="folder-name">Folder Name</label>
+            <input
+              value=""
+              type="text"
+              id="folder-name"
+              name="folder"
+              placeholder="Enter folder name"
+              required
+              minlength="5"
+              maxlength="100"
+              autocomplete="off"
+              aria-describedby="folder-error"
+              aria-invalid=""
+            />
+            <p id="folder-error" class="field-error" aria-live="polite"></p>
+          </div>
+          <div
+            class="button-group"
+            role="group"
+            aria-label="Folder creating actions"
+          >
+            <button
+              class="form-btn close-btn"
+              type="button"
+              aria-label="Cancel and close modal"
+            >
+              Cancel
+            </button>
+            <button class="form-btn" type="submit">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div
+      id="upload-file-modal"
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="upload-file-title"
+      hidden
+    >
+      <div class="modal-content">
+        <h2 id="upload-file-title" class="modal-title">Upload New File</h2>
+        <form
+          action="/files"
+          method="post"
+          class="create-form"
+          id="upload-file-form"
+          enctype="multipart/form-data"
+        >
+          <div class="form-field">
+            <label class="file-control">
+              <span class="file-trigger">Choose File</span>
+              <span class="file-display" id="file-display" aria-live="polite">
+                No file chosen
+              </span>
+              <input
+                type="file"
+                id="file-input"
+                name="file"
+                required
+                accept=".png,.jpg,.jpeg,.pdf"
+                class="file-input"
+                aria-describedby="file-error"
+              />
+            </label>
+            <p id="file-error" class="field-error" aria-live="polite"></p>
+          </div>
+          <div
+            class="button-group"
+            role="group"
+            aria-label="File creating actions"
+          >
+            <button
+              class="form-btn close-btn"
+              type="button"
+              aria-label="Cancel and close modal"
+            >
+              Cancel
+            </button>
+            <button class="form-btn" type="submit">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div
+      id="delete-file-modal"
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="delete-file-title"
+      hidden
+    >
+      <div class="modal-content">
+        <h2 id="delete-file-title" class="modal-title">Upload New File</h2>
+        <form
+          action="/files"
+          method="post"
+          class="create-form"
+          id="delete-file-form"
+        >
+          <p>Are you sure to delete this file permanently ?</p>
+          <div class="button-group" role="group">
+            <button
+              class="form-btn close-btn"
+              type="button"
+              aria-label="Cancel and close modal"
+            >
+              Cancel
+            </button>
+            <button
+              class="form-btn"
+              type="submit"
+              aria-label="Confirm file deletion"
+            >
+              Confirm
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div
+      id="share-doc-modal"
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="share-doc-title"
+      hidden
+    >
+      <div class="modal-content">
+        <h2 id="share-doc-title" class="modal-title">Share Your Documents</h2>
+        <form
+          action="/files"
+          method="post"
+          class="create-form"
+          id="share-doc-form"
+        >
+          <div class="form-field radio-field">
+            <p class="field-label">Share duration</p>
+            <div
+              class="radio-group"
+              role="radiogroup"
+              aria-label="Share duration"
+            >
+              <label class="radio-option">
+                <input type="radio" name="share-duration" value="1" checked />
+                <span>1 day</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="share-duration" value="7" />
+                <span>7 days</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="share-duration" value="10" />
+                <span>10 days</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="share-duration" value="30" />
+                <span>30 days</span>
+              </label>
+            </div>
+          </div>
+          <div class="copy-field">
+            <input
+              type="text"
+              id="share-link"
+              class="copy-input"
+              value=""
+              readonly
+            />
+            <button
+              type="button"
+              class="copy-btn"
+              aria-label="Copy share link"
+              data-copy-target="share-link"
+            >
+              Copy
+            </button>
+          </div>
+          <div class="button-group" role="group" aria-label="Share actions">
+            <button class="form-btn" type="button">Get Link</button>
+            <button
+              class="form-btn close-btn"
+              type="button"
+              aria-label="Close modal"
+            >
+              Close
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   </body>
   <script src="/scripts/index.js"></script>
 </html>
