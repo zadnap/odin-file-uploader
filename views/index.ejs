@@ -88,9 +88,15 @@
             </button>
           </div>
           <ul class="doc-list">
-            <li class="doc-item active"><a href="/my-docs">My Documents</a></li>
-            <li class="doc-item">
-              <a href="/shared-with-me">Shared With Me</a>
+            <li
+              class="doc-item <%= currentPath === '/documents' ? 'active' : '' %>"
+            >
+              <a href="/documents">My Documents</a>
+            </li>
+            <li
+              class="doc-item <%= currentPath === '/shared' ? 'active' : '' %>"
+            >
+              <a href="/shared">Shared With Me</a>
             </li>
           </ul>
         </section>
@@ -98,11 +104,9 @@
       <section aria-labelledby="doc-section-title" class="doc-section">
         <h2 id="doc-section-title" class="visually-hidden">Document Section</h2>
         <nav class="breadcrumb" aria-label="breadcrumb">
-          <a href="/">Home</a>
+          <a href="/documents">My Documents</a>
           <i class="fa-solid fa-arrow-right-long"></i>
-          <a href="/my-docs">My Documents</a>
-          <i class="fa-solid fa-arrow-right-long"></i>
-          <a href="/my-docs/12">Siuuuuuu</a>
+          <a href="/documents">Second</a>
         </nav>
         <section class="file-section" aria-labelledby="file-section-title">
           <h3 id="file-section-title" class="visually-hidden">
