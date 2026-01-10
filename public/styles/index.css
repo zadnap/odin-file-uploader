@@ -219,21 +219,21 @@ main {
   background-color: var(--overlay-color);
 }
 
-.sort-icons span {
+.sort-icons i {
   display: none;
 }
 
-.file-header-column.descending .down {
+.file-header-column.descending .fa-caret-down {
   display: block;
 }
-.file-header-column.descending .up {
+.file-header-column.descending .fa-caret-up {
   display: none;
 }
 
-.file-header-column.ascending .up {
+.file-header-column.ascending .fa-caret-up {
   display: block;
 }
-.file-header-column.ascending .down {
+.file-header-column.ascending .fa-caret-down {
   display: none;
 }
 
