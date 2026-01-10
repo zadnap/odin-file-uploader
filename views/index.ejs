@@ -55,7 +55,7 @@
             </div>
           </li>
           <li>
-            <form action="/logout" method="post">
+            <form action="/auth/logout" method="post">
               <button type="submit" class="logout-btn" aria-label="Log out">
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
               </button>
@@ -64,8 +64,10 @@
         </ul>
         <% } else { %>
         <ul class="auth-nav">
-          <li><a class="nav-link sign-up-btn" href="/register">Sign Up</a></li>
-          <li><a class="nav-link log-in-btn" href="/login">Log In</a></li>
+          <li>
+            <a class="nav-link sign-up-btn" href="/auth/register">Sign Up</a>
+          </li>
+          <li><a class="nav-link log-in-btn" href="/auth/login">Log In</a></li>
         </ul>
         <% } %>
       </nav>

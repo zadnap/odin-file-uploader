@@ -8,10 +8,8 @@ import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from './generated/prisma/client.js';
 import { PrismaSessionStore } from '@quixo3/prisma-session-store';
 import './config/passport.js';
-import loginRouter from './routes/loginRouter.js';
-import registerRouter from './routes/registerRouter.js';
 import indexRouter from './routes/indexRouter.js';
-import logoutRouter from './routes/logoutRouter.js';
+import authRouter from './routes/authRouter.js';
 
 const app = express();
 
@@ -49,9 +47,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', indexRouter);
-app.use('/login', loginRouter);
-app.use('/register', registerRouter);
-app.use('/logout', logoutRouter);
+app.use('/auth', authRouter);
 
 app.listen(process.env.EXPRESS_PORT, (error) => {
   if (error) {
