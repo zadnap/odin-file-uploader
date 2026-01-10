@@ -284,6 +284,10 @@ main {
   border: 1px solid var(--overlay-color);
 }
 
+.details[hidden] {
+  display: none;
+}
+
 .details header {
   display: flex;
   justify-content: space-between;
@@ -386,7 +390,7 @@ main {
 form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
 .form-field {
@@ -404,6 +408,10 @@ form {
 
 .form-field:not(.radio-field) input:focus {
   border-color: var(--primary-color);
+}
+
+.prompt-question {
+  line-height: 1.5;
 }
 
 .file-input {
