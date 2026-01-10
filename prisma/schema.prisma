@@ -14,12 +14,15 @@ datasource db {
 }
 
 model User {
-  id          String    @id @default(uuid()) @map("id")
-  username    String    @unique @map("username")
-  password    String    @map("password")
-  displayName String?   @map("display_name")
-  createdAt   DateTime  @default(now()) @map("created_at")
-  sessions    Session[]
+  id          String   @id @default(uuid()) @map("id")
+  username    String   @unique @map("username")
+  password    String   @map("password")
+  displayName String   @map("display_name")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  sessions Session[]
+  files    File[]
+  folders  Folder[]
 
   @@map("users")
 }
@@ -34,4 +37,48 @@ model Session {
 
   @@index([expiresAt])
   @@map("sessions")
+}
+
+model File {
+  id       String @id @default(uuid()) @map("id")
+  name     String @map("name")
+  size     Int    @map("size")
+  mimeType String @map("mime_type")
+
+  path String? @map("path")
+  url  String? @map("url")
+
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id])
+
+  folderId String? @map("folder_id")
+  folder   Folder? @relation(fields: [folderId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@unique([name, folderId, userId])
+  @@index([userId])
+  @@index([folderId])
+  @@map("files")
+}
+
+model Folder {
+  id   String @id @default(uuid()) @map("id")
+  name String @map("name")
+
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id])
+
+  parentId String?  @map("parent_id")
+  parent   Folder?  @relation("FolderTree", fields: [parentId], references: [id])
+  children Folder[] @relation("FolderTree")
+
+  files File[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@unique([name, parentId, userId])
+  @@index([userId])
+  @@index([parentId])
+  @@map("folders")
 }
