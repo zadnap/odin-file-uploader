@@ -1,9 +1,11 @@
+import { buildBreadcrumb } from '../lib/breadcrumb.js';
 import { formatDate } from '../lib/date.js';
 import { formatFileSize } from '../lib/fileSize.js';
 import { prisma } from '../lib/prisma.js';
 
 const getFolderById = async (req, res) => {
   const folderId = req.params.id;
+  const userId = req.user.id;
 
   const folder = await prisma.folder.findUnique({
     where: { id: folderId },
@@ -54,7 +56,10 @@ const getFolderById = async (req, res) => {
     })),
   ];
 
-  res.render('index', { docs: folderItems, breadcrumb: [] });
+  res.render('index', {
+    docs: folderItems,
+    breadcrumb: await buildBreadcrumb(folderId, userId),
+  });
 };
 
 export { getFolderById };

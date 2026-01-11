@@ -53,7 +53,7 @@ const getMyDocuments = async (req, res) => {
 
   res.render('index', {
     docs,
-    breadcrumb: [{ name: 'My Documents', url: '/documents' }],
+    breadcrumb: null,
   });
 };
 

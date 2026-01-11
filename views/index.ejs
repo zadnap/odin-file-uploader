@@ -103,6 +103,7 @@
       </aside>
       <section aria-labelledby="doc-section-title" class="doc-section">
         <h2 id="doc-section-title" class="visually-hidden">Document Section</h2>
+        <% if (breadcrumb) { %>
         <nav class="breadcrumb" aria-label="breadcrumb">
           <% breadcrumb.forEach((crumb, index) => { %>
           <% if (crumb.isEllipsis) { %>
@@ -115,6 +116,7 @@
           <% } %>
           <% }) %>
         </nav>
+        <% } %>
         <% if (docs?.length > 0) { %>
         <section class="file-section" aria-labelledby="file-section-title">
           <h3 id="file-section-title" class="visually-hidden">
