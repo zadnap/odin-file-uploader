@@ -104,9 +104,16 @@
       <section aria-labelledby="doc-section-title" class="doc-section">
         <h2 id="doc-section-title" class="visually-hidden">Document Section</h2>
         <nav class="breadcrumb" aria-label="breadcrumb">
-          <a href="/documents">My Documents</a>
+          <% breadcrumb.forEach((crumb, index) => { %>
+          <% if (crumb.isEllipsis) { %>
+          <span><%= crumb.name %></span>
+          <% } else { %>
+          <a href="<%= crumb.url %>"><%= crumb.name %></a>
+          <% } %>
+          <% if (index !== breadcrumb.length - 1) { %>
           <i class="fa-solid fa-arrow-right-long"></i>
-          <a href="/documents">Second</a>
+          <% } %>
+          <% }) %>
         </nav>
         <% if (docs?.length > 0) { %>
         <section class="file-section" aria-labelledby="file-section-title">

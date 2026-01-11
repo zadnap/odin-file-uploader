@@ -44,14 +44,17 @@ const getMyDocuments = async (req, res) => {
     })),
     ...files.map((f) => ({
       ...f,
-      type: 'file',
+      type: f.mimeType,
       author: f.user.username,
       createdAt: formatDate(f.createdAt),
       size: formatFileSize(f.size),
     })),
   ];
 
-  res.render('index', { docs });
+  res.render('index', {
+    docs,
+    breadcrumb: [{ name: 'My Documents', url: '/documents' }],
+  });
 };
 
 const getSharedWithMe = async (req, res) => {
