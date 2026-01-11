@@ -169,11 +169,11 @@
             </button>
           </div>
           <ul class="file-list">
-            <% docs.forEach((doc) => { %>
+            <% docs.forEach((doc, index) => { %>
             <li class="file-item">
               <button
                 type="button"
-                class="file-row"
+                class="file-row <%= index === 0 && 'active' %>"
                 data-id="<%= doc.id %>"
                 data-type="<%= doc.type %>"
                 data-name="<%= doc.name %>"
@@ -204,14 +204,17 @@
         </p>
         <% } %>
       </section>
+      <% if (docs?.length > 0) { const firstDoc = docs[0];%>
       <aside
         aria-labelledby="file-info-title"
-        hidden
         id="details"
         class="details"
+        data-id="<%= firstDoc.id %>"
       >
         <header>
-          <h2 id="file-info-title" class="detail-title">File Information</h2>
+          <h2 id="file-info-title" class="detail-title">
+            <%= firstDoc.type === 'folder' ? 'Folder' : 'File' %> Information
+          </h2>
           <button
             aria-label="Close file detail section"
             class="close-detail-btn"
@@ -223,39 +226,49 @@
           <dl class="file-details">
             <div class="file-detail-item">
               <dt>Name</dt>
-              <dd id="detail-name"></dd>
+              <dd id="detail-name"><%= firstDoc.name %></dd>
             </div>
             <div class="file-detail-item">
               <dt>Type</dt>
-              <dd id="detail-type"></dd>
+              <dd id="detail-type"><%= firstDoc.type %></dd>
             </div>
             <div class="file-detail-item">
               <dt>Author</dt>
-              <dd id="detail-author"></dd>
+              <dd id="detail-author"><%= firstDoc.author %></dd>
             </div>
-            <div class="file-detail-item">
+            <div
+              class="file-detail-item"
+              id="detail-size-field"
+              aria-hidden="<%= firstDoc.type === 'folder' %>"
+            >
               <dt>Size</dt>
-              <dd id="detail-size"></dd>
+              <dd id="detail-size"><%= firstDoc.size || '—' %></dd>
             </div>
             <div class="file-detail-item">
               <dt>Created at</dt>
-              <dd id="detail-created"></dd>
+              <dd id="detail-created"><%= firstDoc.createdAt %></dd>
             </div>
           </dl>
         </section>
         <div class="button-group" role="group" aria-label="File actions">
           <button
             id="open-btn"
-            class="file-action-btn"
+            class="file-action-btn <%= firstDoc.type !== 'folder' ? 'hidden' : '' %>"
             aria-label="View folder's content"
           >
             Open
           </button>
+          <button
+            id="download-btn"
+            class="file-action-btn <%= firstDoc.type === 'folder' ? 'hidden' : '' %>"
+          >
+            Download
+          </button>
           <button id="share-btn" class="file-action-btn">Share</button>
           <button id="delete-btn" class="file-action-btn">Delete</button>
-          <button id="download-btn" class="file-action-btn">Download</button>
         </div>
       </aside>
+      <% } %>
     </main>
     <div
       id="create-folder-modal"

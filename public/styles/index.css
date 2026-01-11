@@ -371,6 +371,10 @@ main {
   background-color: var(--overlay-color);
 }
 
+.file-action-btn.hidden {
+  display: none;
+}
+
 .modal {
   position: fixed;
   inset: 0;
