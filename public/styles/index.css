@@ -95,6 +95,7 @@ main {
   position: relative;
   flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   padding: 10px 0;
 }
@@ -293,6 +294,18 @@ main {
   gap: 10px;
   border-radius: 5px;
   border: 1px solid var(--overlay-color);
+  transform: translateX(20px);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.details.is-visible {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .details[hidden] {

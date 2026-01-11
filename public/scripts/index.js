@@ -114,6 +114,9 @@ fileList.addEventListener('click', (e) => {
   }
 
   detailPanel.hidden = false;
+  requestAnimationFrame(() => {
+    detailPanel.classList.add('is-visible');
+  });
 
   document
     .querySelectorAll('.file-row.active')
@@ -122,7 +125,15 @@ fileList.addEventListener('click', (e) => {
 });
 
 closePanelBtn.addEventListener('click', () => {
-  detailPanel.hidden = true;
+  detailPanel.classList.remove('is-visible');
+
+  detailPanel.addEventListener(
+    'transitionend',
+    () => {
+      detailPanel.hidden = true;
+    },
+    { once: true }
+  );
 
   document
     .querySelectorAll('.file-row.active')
