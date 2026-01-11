@@ -183,6 +183,7 @@ textarea {
   outline: none;
   font: inherit;
   color: inherit;
+  padding: 0;
 }
 
 button:focus-visible {

@@ -247,6 +247,7 @@ main {
 }
 
 .file-row {
+  width: 100%;
   cursor: pointer;
   display: grid;
   grid-template-columns: 3fr 1fr 1fr 1fr;
@@ -261,7 +262,13 @@ main {
 }
 
 .file-row-column {
+  text-align: start;
   padding: 10px;
+}
+
+.file-row-column i {
+  width: 20px;
+  text-align: center;
 }
 
 .file-row:hover {
@@ -271,6 +278,10 @@ main {
 .file-name {
   display: flex;
   gap: 7px;
+}
+
+.empty-noti {
+  padding: 10px;
 }
 
 .details {

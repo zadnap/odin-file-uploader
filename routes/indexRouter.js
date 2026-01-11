@@ -1,5 +1,8 @@
 import express from 'express';
-import { getIndex } from '../controllers/indexController.js';
+import {
+  getMyDocuments,
+  getSharedWithMe,
+} from '../controllers/indexController.js';
 
 const indexRouter = express.Router();
 
@@ -15,7 +18,7 @@ indexRouter.get(
     }
     next();
   },
-  getIndex
+  getMyDocuments
 );
 
 indexRouter.get(
@@ -26,7 +29,7 @@ indexRouter.get(
     }
     next();
   },
-  getIndex
+  getSharedWithMe
 );
 
 export default indexRouter;
