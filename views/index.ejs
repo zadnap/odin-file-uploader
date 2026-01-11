@@ -230,7 +230,9 @@
             </div>
             <div class="file-detail-item">
               <dt>Type</dt>
-              <dd id="detail-type"><%= firstDoc.type %></dd>
+              <dd id="detail-type">
+                <%= firstDoc.type === 'folder' ? 'Folder' : firstDoc.type %>
+              </dd>
             </div>
             <div class="file-detail-item">
               <dt>Author</dt>

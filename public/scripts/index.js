@@ -92,7 +92,8 @@ fileList.addEventListener('click', (e) => {
   }
   detailPanel.dataset.id = data.id;
   document.getElementById('detail-name').textContent = data.name;
-  document.getElementById('detail-type').textContent = data.type;
+  document.getElementById('detail-type').textContent =
+    data.type === 'folder' ? 'Folder' : data.type;
   document.getElementById('detail-size').textContent = data.size || '—';
   document.getElementById('detail-size-field').ariaHidden =
     data.type === 'folder';

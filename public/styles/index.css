@@ -353,14 +353,11 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  font-size: 1.5rem;
 }
 
 .file-detail-item dt {
   font-weight: 600;
-}
-
-.file-detail-item dd {
-  font-size: 1.5rem;
 }
 
 .button-group {
