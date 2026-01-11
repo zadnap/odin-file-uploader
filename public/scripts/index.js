@@ -68,3 +68,60 @@ fileInput.addEventListener('change', () => {
   fileDisplay.textContent =
     fileInput.files.length > 0 ? fileInput.files[0].name : 'No file chosen';
 });
+
+const detailPanel = document.querySelector('#details');
+const closePanelBtn = detailPanel.querySelector('.close-detail-btn');
+const fileList = document.querySelector('.file-list');
+const fileInfoTitle = document.querySelector('#file-info-title');
+
+const openBtn = document.getElementById('open-btn');
+const downloadBtn = document.getElementById('download-btn');
+
+fileList.addEventListener('click', (e) => {
+  const row = e.target.closest('.file-row');
+  if (!row) {
+    return;
+  }
+
+  const data = row.dataset;
+
+  if (data.type === 'folder') {
+    fileInfoTitle.textContent = 'Folder Information';
+  } else {
+    fileInfoTitle.textContent = 'File Information';
+  }
+  document.getElementById('detail-name').textContent = data.name;
+  document.getElementById('detail-type').textContent = data.type;
+  document.getElementById('detail-size').textContent = data.size || '—';
+  document.getElementById('detail-author').textContent = data.author;
+  document.getElementById('detail-created').textContent = data.createdAt;
+
+  [openBtn, shareBtn, deleteBtn, downloadBtn].forEach((btn) => {
+    btn.hidden = true;
+  });
+
+  if (data.type === 'folder') {
+    openBtn.hidden = false;
+    shareBtn.hidden = false;
+    deleteBtn.hidden = false;
+  } else {
+    downloadBtn.hidden = false;
+    shareBtn.hidden = false;
+    deleteBtn.hidden = false;
+  }
+
+  detailPanel.hidden = false;
+
+  document
+    .querySelectorAll('.file-row.active')
+    .forEach((el) => el.classList.remove('active'));
+  row.classList.add('active');
+});
+
+closePanelBtn.addEventListener('click', () => {
+  detailPanel.hidden = true;
+
+  document
+    .querySelectorAll('.file-row.active')
+    .forEach((el) => el.classList.remove('active'));
+});
