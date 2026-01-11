@@ -90,6 +90,7 @@ fileList.addEventListener('click', (e) => {
   } else {
     fileInfoTitle.textContent = 'File Information';
   }
+  detailPanel.dataset.id = data.id;
   document.getElementById('detail-name').textContent = data.name;
   document.getElementById('detail-type').textContent = data.type;
   document.getElementById('detail-size').textContent = data.size || '—';
@@ -124,4 +125,12 @@ closePanelBtn.addEventListener('click', () => {
   document
     .querySelectorAll('.file-row.active')
     .forEach((el) => el.classList.remove('active'));
+});
+
+openBtn.addEventListener('click', () => {
+  const url = new URL(window.location.href);
+  const base = url.origin;
+  const nextUrl = `${base}/folders/${detailPanel.dataset.id}`;
+
+  window.location.href = nextUrl;
 });
