@@ -5,6 +5,7 @@ import { formatDate } from '../lib/date.js';
 import { formatFileSize } from '../lib/fileSize.js';
 import { computeMaxPage, computeOffset } from '../lib/pagination.js';
 import { prisma } from '../lib/prisma.js';
+import { validationResult } from 'express-validator';
 
 const getFolderById = async (req, res) => {
   const userId = req.user.id;
@@ -41,7 +42,45 @@ const getFolderById = async (req, res) => {
     },
     sortBy,
     order,
+    currentFolderId: folderId,
   });
 };
 
-export { getFolderById };
+const handleFolderValidator = async (req, res, next) => {
+  const errors = validationResult(req);
+
+  if (errors.isEmpty()) {
+    return next();
+  }
+
+  const errorMessages = errors.array().map((err) => err.msg);
+
+  return res.status(400).render('error', {
+    title: 'Create folder failed',
+    errorMessages,
+  });
+};
+
+const postFolder = async (req, res) => {
+  const { folder, parentId } = req.body;
+  const userId = req.user.id;
+
+  try {
+    await prisma.folder.create({
+      data: {
+        name: folder,
+        userId,
+        parentId: parentId || null,
+      },
+    });
+
+    return res.redirect(parentId ? `/folders/${parentId}` : '/documents');
+  } catch {
+    return res.status(400).render('error', {
+      title: 'Create folder failed',
+      errorMessages: ['Unable to create folder. Please try again.'],
+    });
+  }
+};
+
+export { getFolderById, handleFolderValidator, postFolder };

@@ -432,14 +432,14 @@ main {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.7);
-  display: grid;
+  display: none;
   place-items: center;
   z-index: 1000;
   animation: fadeIn ease 0.2s;
 }
 
-.modal[hidden] {
-  display: none;
+.modal.is-visible {
+  display: grid;
 }
 
 .modal-content {

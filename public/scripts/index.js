@@ -18,11 +18,11 @@ const fileDisplay = document.querySelector('#file-display');
 
 const openModal = (modal) => {
   modal.querySelector('form').reset();
-  modal.hidden = false;
+  modal.classList.add('is-visible');
 };
 
 const closeModal = (modal) => {
-  modal.hidden = true;
+  modal.classList.remove('is-visible');
 };
 
 newFolderBtn.addEventListener('click', () => openModal(createFolderModal));

@@ -32,6 +32,7 @@ const getMyDocuments = async (req, res) => {
     },
     sortBy,
     order,
+    currentFolderId: null,
   });
 };
 
