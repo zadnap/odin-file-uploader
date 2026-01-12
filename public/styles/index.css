@@ -285,6 +285,49 @@ main {
   padding: 10px;
 }
 
+.pagination {
+  padding: 10px 10px 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.page-indicator {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+.page-indicator input {
+  width: 5ch;
+  text-align: center;
+  padding: 2px 1ch;
+  border: 1px solid var(--overlay-color);
+  border-radius: 3px;
+  transition: background-color ease 0.2s;
+}
+
+.page-indicator input:focus {
+  background-color: var(--overlay-color);
+}
+
+.page-buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.page-buttons button {
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid var(--overlay-color);
+  padding: 7px 10px;
+  transition: background-color ease 0.2s;
+}
+
+.page-buttons button:hover {
+  background-color: var(--overlay-color);
+}
+
 .details {
   flex: 1.5;
   padding: 15px;

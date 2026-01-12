@@ -196,6 +196,53 @@
             </li>
             <% }) %>
           </ul>
+          <nav class="pagination" aria-label="Pagination">
+            <form class="page-indicator" action="" method="get">
+              <label for="page-input" class="visually-hidden">Page</label>
+              <input
+                id="page-input"
+                type="number"
+                name="page"
+                min="1"
+                max="<%= page.max %>"
+                value="<%= page.current %>"
+              />
+              <span>
+                /
+                <%= page.max %>
+              </span>
+            </form>
+            <div class="page-buttons">
+              <% if (page.current !== 1) { %>
+              <form action="" method="get">
+                <input
+                  type="hidden"
+                  name="page"
+                  value="<%= page.current - 1 %>"
+                />
+                <button
+                  id="previous-page"
+                  type="submit"
+                  aria-label="Previous page"
+                >
+                  Previous
+                </button>
+              </form>
+              <% } %>
+              <% if (page.current !== page.max) { %>
+              <form action="" method="get">
+                <input
+                  type="hidden"
+                  name="page"
+                  value="<%= page.current + 1 %>"
+                />
+                <button id="next-page" type="submit" aria-label="Next page">
+                  Next
+                </button>
+              </form>
+              <% } %>
+            </div>
+          </nav>
         </section>
         <% } else { %>
         <p class="empty-noti">
