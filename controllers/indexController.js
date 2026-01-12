@@ -1,59 +1,34 @@
 import { formatDate } from '../lib/date.js';
 import { prisma } from '../lib/prisma.js';
 import { formatFileSize } from '../lib/fileSize.js';
+import { computeMaxPage, computeOffset } from '../lib/pagination.js';
+import { getDocuments } from '../generated/prisma/sql/index.js';
+import { PAGINATION } from '../config/pagination.js';
 
 const getMyDocuments = async (req, res) => {
   const userId = req.user.id;
 
-  const [folders, files] = await Promise.all([
-    prisma.folder.findMany({
-      where: {
-        userId,
-        parentId: null,
-      },
-      include: {
-        user: {
-          select: {
-            username: true,
-          },
-        },
-      },
-    }),
-    prisma.file.findMany({
-      where: {
-        userId,
-        folderId: null,
-      },
-      include: {
-        user: {
-          select: {
-            username: true,
-          },
-        },
-      },
-    }),
-  ]);
+  const currentPage = Number(req.query.page) || 1;
+  const offset = computeOffset(currentPage);
+  const maxPage = await computeMaxPage(userId);
 
-  const docs = [
-    ...folders.map((f) => ({
-      ...f,
-      type: 'folder',
-      author: f.user.username,
-      createdAt: formatDate(f.createdAt),
-      size: '',
-    })),
-    ...files.map((f) => ({
-      ...f,
-      type: f.mimeType,
-      author: f.user.username,
-      createdAt: formatDate(f.createdAt),
-      size: formatFileSize(f.size),
-    })),
-  ];
+  const docs = await prisma.$queryRawTyped(
+    getDocuments(userId, PAGINATION.PAGE_SIZE, offset)
+  );
+
+  const formattedDocs = docs.map((doc) => ({
+    ...doc,
+    createdAt: formatDate(doc.createdAt),
+    size: doc.size ? formatFileSize(doc.size) : '',
+  }));
 
   res.render('index', {
-    docs,
+    docs: formattedDocs,
     breadcrumb: null,
+    page: {
+      current: currentPage,
+      max: maxPage,
+    },
   });
 };
 

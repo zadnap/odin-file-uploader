@@ -196,6 +196,7 @@
             </li>
             <% }) %>
           </ul>
+          <% if (page.max !== 1) { %>
           <nav class="pagination" aria-label="Pagination">
             <form class="page-indicator" action="" method="get">
               <label for="page-input" class="visually-hidden">Page</label>
@@ -243,6 +244,7 @@
               <% } %>
             </div>
           </nav>
+          <% } %>
         </section>
         <% } else { %>
         <p class="empty-noti">
