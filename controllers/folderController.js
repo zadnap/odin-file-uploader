@@ -9,13 +9,21 @@ import { prisma } from '../lib/prisma.js';
 const getFolderById = async (req, res) => {
   const userId = req.user.id;
   const folderId = req.params.id;
+  const { page, sortBy, order } = req.query;
 
-  const currentPage = Number(req.query.page) || 1;
+  const currentPage = Number(page) || 1;
   const offset = computeOffset(currentPage);
   const maxPage = await computeMaxPage(userId, folderId);
 
   const docs = await prisma.$queryRawTyped(
-    getFolderContent(userId, folderId, PAGINATION.PAGE_SIZE, offset)
+    getFolderContent(
+      userId,
+      folderId,
+      PAGINATION.PAGE_SIZE,
+      offset,
+      sortBy,
+      order
+    )
   );
 
   const formattedDocs = docs.map((doc) => ({
@@ -31,6 +39,8 @@ const getFolderById = async (req, res) => {
       current: currentPage,
       max: maxPage,
     },
+    sortBy,
+    order,
   });
 };
 

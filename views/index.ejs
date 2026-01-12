@@ -124,9 +124,9 @@
           </h3>
           <div class="file-header">
             <button
-              class="file-header-column"
+              class="file-header-column <%= sortBy === 'name' ? order : '' %>"
               data-sort="name"
-              aria-sort="none"
+              aria-sort="<%= sortBy === 'name' ? order : '' %>"
             >
               <span class="label">Name</span>
               <span class="sort-icons" aria-hidden="true">
@@ -135,9 +135,9 @@
               </span>
             </button>
             <button
-              class="file-header-column"
+              class="file-header-column <%= sortBy === 'size' ? order : '' %>"
               data-sort="size"
-              aria-sort="none"
+              aria-sort="<%= sortBy === 'size' ? order : '' %>"
             >
               <span class="label">Size</span>
               <span class="sort-icons" aria-hidden="true">
@@ -146,9 +146,9 @@
               </span>
             </button>
             <button
-              class="file-header-column"
+              class="file-header-column <%= sortBy === 'author' ? order : '' %>"
               data-sort="author"
-              aria-sort="none"
+              aria-sort="<%= sortBy === 'author' ? order : '' %>"
             >
               <span class="label">Author</span>
               <span class="sort-icons" aria-hidden="true">
@@ -157,9 +157,9 @@
               </span>
             </button>
             <button
-              class="file-header-column"
+              class="file-header-column <%= sortBy === 'created' ? order : '' %>"
               data-sort="created"
-              aria-sort="none"
+              aria-sort="<%= sortBy === 'created' ? order : '' %>"
             >
               <span class="label">Created</span>
               <span class="sort-icons" aria-hidden="true">

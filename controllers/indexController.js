@@ -7,13 +7,14 @@ import { PAGINATION } from '../config/pagination.js';
 
 const getMyDocuments = async (req, res) => {
   const userId = req.user.id;
+  const { page, sortBy, order } = req.query;
 
-  const currentPage = Number(req.query.page) || 1;
+  const currentPage = Number(page) || 1;
   const offset = computeOffset(currentPage);
   const maxPage = await computeMaxPage(userId);
 
   const docs = await prisma.$queryRawTyped(
-    getDocuments(userId, PAGINATION.PAGE_SIZE, offset)
+    getDocuments(userId, PAGINATION.PAGE_SIZE, offset, sortBy, order)
   );
 
   const formattedDocs = docs.map((doc) => ({
@@ -29,6 +30,8 @@ const getMyDocuments = async (req, res) => {
       current: currentPage,
       max: maxPage,
     },
+    sortBy,
+    order,
   });
 };
 

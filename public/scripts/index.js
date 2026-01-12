@@ -148,3 +148,27 @@ openBtn.addEventListener('click', () => {
 
   window.location.href = nextUrl;
 });
+
+const headers = document.querySelectorAll('.file-header-column');
+
+headers.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const sortBy = btn.dataset.sort;
+    const url = new URL(window.location.href);
+
+    const currentSort = url.searchParams.get('sortBy');
+    const currentOrder = url.searchParams.get('order') || 'descending';
+
+    let nextOrder = 'descending';
+
+    if (currentSort === sortBy) {
+      nextOrder = currentOrder === 'descending' ? 'ascending' : 'descending';
+    }
+
+    url.searchParams.set('sortBy', sortBy);
+    url.searchParams.set('order', nextOrder);
+    url.searchParams.set('page', '1');
+
+    window.location.href = url.toString();
+  });
+});
