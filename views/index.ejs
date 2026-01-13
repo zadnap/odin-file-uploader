@@ -202,6 +202,8 @@
           <nav class="pagination" aria-label="Pagination">
             <form class="page-indicator" action="" method="get">
               <label for="page-input" class="visually-hidden">Page</label>
+              <input type="hidden" name="sortBy" value="<%= sortBy %>" />
+              <input type="hidden" name="order" value="<%= order %>" />
               <input
                 id="page-input"
                 type="number"
@@ -218,6 +220,8 @@
             <div class="page-buttons">
               <% if (page.current !== 1) { %>
               <form action="" method="get">
+                <input type="hidden" name="sortBy" value="<%= sortBy %>" />
+                <input type="hidden" name="order" value="<%= order %>" />
                 <input
                   type="hidden"
                   name="page"
@@ -234,6 +238,8 @@
               <% } %>
               <% if (page.current !== page.max) { %>
               <form action="" method="get">
+                <input type="hidden" name="sortBy" value="<%= sortBy %>" />
+                <input type="hidden" name="order" value="<%= order %>" />
                 <input
                   type="hidden"
                   name="page"
