@@ -375,7 +375,10 @@
               aria-describedby="folder-error"
               aria-invalid=""
             />
-            <p id="folder-error" class="field-error" aria-live="polite"></p>
+            <p id="folder-error" class="field-error" aria-live="polite">
+              Folder name must contain at least one letter or number and cannot
+              be only symbols
+            </p>
           </div>
           <div
             class="button-group"
@@ -432,7 +435,9 @@
                 aria-describedby="file-error"
               />
             </label>
-            <p id="file-error" class="field-error" aria-live="polite"></p>
+            <p id="file-error" class="field-error" aria-live="polite">
+              Allowed file types: PDF, JPG, PNG, DOC, DOCX.
+            </p>
           </div>
           <div
             class="button-group"

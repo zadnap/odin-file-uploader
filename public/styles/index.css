@@ -28,7 +28,7 @@ body {
 .app-name {
   font-size: 2rem;
   font-weight: 600;
-  color: var(--primary-color);
+  color: var(--text-color);
   letter-spacing: 4px;
   text-transform: uppercase;
 }
@@ -581,6 +581,7 @@ form {
 }
 
 .field-error {
+  line-height: 1.5;
   font-size: 1.4rem;
   color: var(--secondary-color);
 }
