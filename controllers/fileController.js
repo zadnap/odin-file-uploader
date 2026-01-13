@@ -1,6 +1,6 @@
 import { prisma } from '../lib/prisma.js';
 import { upload } from '../config/multer.js';
-import { getUniqueFileName } from '../lib/fileName.js';
+import { getUniqueFileName } from '../lib/docName.js';
 
 const uploadSingleFile = (req, res, next) => {
   upload.single('file')(req, res, (err) => {

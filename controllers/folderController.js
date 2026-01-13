@@ -2,6 +2,7 @@ import { PAGINATION } from '../config/pagination.js';
 import { getFolderContent } from '../generated/prisma/sql/getFolderContent.js';
 import { buildBreadcrumb } from '../lib/breadcrumb.js';
 import { formatDate } from '../lib/date.js';
+import { getUniqueFolderName } from '../lib/docName.js';
 import { formatFileSize } from '../lib/fileSize.js';
 import { computeMaxPage, computeOffset } from '../lib/pagination.js';
 import { prisma } from '../lib/prisma.js';
@@ -66,9 +67,15 @@ const postFolder = async (req, res) => {
   const userId = req.user.id;
 
   try {
+    const name = await getUniqueFolderName({
+      originalName: folder,
+      userId,
+      parentId,
+    });
+
     await prisma.folder.create({
       data: {
-        name: folder,
+        name,
         userId,
         parentId: parentId || null,
       },
