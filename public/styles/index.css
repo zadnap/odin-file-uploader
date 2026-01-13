@@ -105,6 +105,17 @@ main {
   padding: 10px;
 }
 
+.welcome-text {
+  line-height: 1.4;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.welcome-text span {
+  font-size: 1.8rem;
+  color: var(--secondary-color);
+}
+
 .create-section .button-group {
   display: flex;
   flex-direction: column;
@@ -131,38 +142,6 @@ main {
 
 .create-btn i {
   width: 30px;
-}
-
-.doc-list {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.doc-item {
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-left: 2px solid transparent;
-  transition:
-    background-color ease 0.1s,
-    border-color ease 0.1s;
-}
-
-.doc-item:hover {
-  background-color: var(--overlay-color);
-  border-color: var(--text-color);
-}
-
-.doc-item.active {
-  background-color: var(--overlay-color);
-  border-color: var(--primary-color);
-}
-
-.doc-item a {
-  display: block;
-  padding: 10px;
-  color: var(--text-color);
-  text-decoration: none;
 }
 
 .doc-section {

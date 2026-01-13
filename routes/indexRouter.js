@@ -1,8 +1,5 @@
 import express from 'express';
-import {
-  getMyDocuments,
-  getSharedWithMe,
-} from '../controllers/indexController.js';
+import { getMyDocuments } from '../controllers/indexController.js';
 
 const indexRouter = express.Router();
 
@@ -19,17 +16,6 @@ indexRouter.get(
     next();
   },
   getMyDocuments
-);
-
-indexRouter.get(
-  '/shared',
-  (req, res, next) => {
-    if (!req.isAuthenticated()) {
-      return res.redirect('/auth/login');
-    }
-    next();
-  },
-  getSharedWithMe
 );
 
 export default indexRouter;

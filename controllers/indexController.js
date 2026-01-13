@@ -36,8 +36,4 @@ const getMyDocuments = async (req, res) => {
   });
 };
 
-const getSharedWithMe = async (req, res) => {
-  res.render('index');
-};
-
-export { getMyDocuments, getSharedWithMe };
+export { getMyDocuments };

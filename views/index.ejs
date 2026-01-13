@@ -79,7 +79,9 @@
           <h2 id="create-section-title" class="visually-hidden">
             Create Section
           </h2>
-          <% if (!currentPath.startsWith('/shared')) { %>
+          <p class="welcome-text">
+            Welcome <br /><span><%= currentUser.displayName %></span>
+          </p>
           <div class="button-group" role="group" aria-label="File actions">
             <button id="new-folder-btn" class="create-btn">
               <i class="fa-solid fa-folder"></i><span>New Folder</span>
@@ -88,19 +90,6 @@
               <i class="fa-solid fa-paperclip"></i><span>New File</span>
             </button>
           </div>
-          <% } %>
-          <ul class="doc-list">
-            <li
-              class="doc-item <%= currentPath.startsWith('/documents') ? 'active' : '' %>"
-            >
-              <a href="/documents">My Documents</a>
-            </li>
-            <li
-              class="doc-item <%= currentPath.startsWith('/shared') ? 'active' : '' %>"
-            >
-              <a href="/shared">Shared With Me</a>
-            </li>
-          </ul>
         </section>
       </aside>
       <section aria-labelledby="doc-section-title" class="doc-section">
