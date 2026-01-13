@@ -11,6 +11,7 @@ import './config/passport.js';
 import indexRouter from './routes/indexRouter.js';
 import authRouter from './routes/authRouter.js';
 import folderRouter from './routes/folderRouter.js';
+import fileRouter from './routes/fileRouter.js';
 
 const app = express();
 
@@ -51,6 +52,7 @@ app.use((req, res, next) => {
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/folders', folderRouter);
+app.use('/files', fileRouter);
 
 app.listen(process.env.EXPRESS_PORT, (error) => {
   if (error) {

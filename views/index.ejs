@@ -317,12 +317,13 @@
           >
             Open
           </button>
-          <button
+          <a
             id="download-btn"
+            href="/files/<%= firstDoc.id %>/download"
             class="file-action-btn <%= firstDoc.type === 'folder' ? 'hidden' : '' %>"
           >
             Download
-          </button>
+          </a>
           <button id="share-btn" class="file-action-btn">Share</button>
           <button id="delete-btn" class="file-action-btn">Delete</button>
         </div>
@@ -402,6 +403,11 @@
           id="upload-file-form"
           enctype="multipart/form-data"
         >
+          <input
+            type="hidden"
+            name="parentId"
+            value="<%= currentFolderId ?? '' %>"
+          />
           <div class="form-field">
             <label class="file-control">
               <span class="file-trigger">Choose File</span>
@@ -432,7 +438,7 @@
             >
               Cancel
             </button>
-            <button class="form-btn" type="submit">Create</button>
+            <button class="form-btn" type="submit">Upload</button>
           </div>
         </form>
       </div>
@@ -447,12 +453,7 @@
     >
       <div class="modal-content">
         <h2 id="delete-file-title" class="modal-title">Upload New File</h2>
-        <form
-          action="/files"
-          method="post"
-          class="create-form"
-          id="delete-file-form"
-        >
+        <form action="" method="post" class="create-form" id="delete-file-form">
           <p class="prompt-question">
             Are you sure to delete this file permanently ?
           </p>
@@ -486,7 +487,7 @@
       <div class="modal-content">
         <h2 id="share-doc-title" class="modal-title">Share Your Documents</h2>
         <form
-          action="/files"
+          action="/share"
           method="post"
           class="create-form"
           id="share-doc-form"
