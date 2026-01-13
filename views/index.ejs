@@ -312,7 +312,7 @@
         <div class="button-group" role="group" aria-label="File actions">
           <a
             id="open-btn"
-            href="/folders/<%= firstDoc.id %>"
+            href="<%= firstDoc.type === 'folder' ? '/folders/' + firstDoc.id : '' %>"
             class="file-action-btn <%= firstDoc.type !== 'folder' ? 'hidden' : '' %>"
             aria-label="View folder's content"
           >
@@ -326,7 +326,12 @@
           >
             Download
           </a>
-          <button id="share-btn" class="file-action-btn">Share</button>
+          <button
+            id="share-btn"
+            class="file-action-btn <%= firstDoc.type !== 'folder' ? 'hidden' : '' %>"
+          >
+            Share
+          </button>
           <button
             id="delete-btn"
             class="file-action-btn"

@@ -129,8 +129,9 @@ if (detailPanel) {
       data.type === 'folder';
     document.getElementById('detail-author').textContent = data.author;
     document.getElementById('detail-created').textContent = data.createdAt;
-    openBtn.href = `/folders/${data.id}`;
-    downloadBtn.href = `/files/${data.id}/download`;
+    openBtn.href = data.type === 'folder' ? `/folders/${data.id}` : '';
+    downloadBtn.href =
+      data.type !== 'folder' ? `/files/${data.id}/download` : '';
     deleteBtn.dataset.deleteUrl = `${data.type === 'folder' ? '/folders' : '/files'}/${data.id}/delete`;
 
     [openBtn, shareBtn, deleteBtn, downloadBtn].forEach((btn) => {
@@ -143,7 +144,6 @@ if (detailPanel) {
       deleteBtn.classList.remove('hidden');
     } else {
       downloadBtn.classList.remove('hidden');
-      shareBtn.classList.remove('hidden');
       deleteBtn.classList.remove('hidden');
     }
 
