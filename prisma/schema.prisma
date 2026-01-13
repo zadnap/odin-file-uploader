@@ -45,9 +45,8 @@ model File {
   name     String @map("name")
   size     Int    @map("size")
   mimeType String @map("mime_type")
-
-  path String? @map("path")
-  url  String? @map("url")
+  url      String @map("url")
+  publicId String @map("public_id")
 
   userId String @map("user_id")
   user   User   @relation(fields: [userId], references: [id])
