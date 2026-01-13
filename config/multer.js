@@ -1,24 +1,7 @@
 import multer from 'multer';
-import fs from 'fs';
-import path from 'path';
-
-const uploadDir = path.resolve('uploads');
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-}
-
-const storage = multer.diskStorage({
-  destination: (req, file, done) => {
-    done(null, uploadDir);
-  },
-  filename: (req, file, done) => {
-    const uniqueName = Date.now() + '-' + file.originalname;
-    done(null, uniqueName);
-  },
-});
 
 const upload = multer({
-  storage,
+  storage: multer.memoryStorage(),
   limits: {
     fileSize: 100 * 1024 * 1024,
   },
