@@ -310,17 +310,19 @@
           </dl>
         </section>
         <div class="button-group" role="group" aria-label="File actions">
-          <button
+          <a
             id="open-btn"
+            href="/folders/<%= firstDoc.id %>"
             class="file-action-btn <%= firstDoc.type !== 'folder' ? 'hidden' : '' %>"
             aria-label="View folder's content"
           >
             Open
-          </button>
+          </a>
           <a
             id="download-btn"
             href="/files/<%= firstDoc.id %>/download"
             class="file-action-btn <%= firstDoc.type === 'folder' ? 'hidden' : '' %>"
+            aria-label="Download file to computer"
           >
             Download
           </a>
@@ -361,7 +363,7 @@
               name="folder"
               placeholder="Enter folder name"
               required
-              minlength="5"
+              minlength="1"
               maxlength="100"
               autocomplete="off"
               aria-describedby="folder-error"

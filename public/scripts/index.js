@@ -99,6 +99,8 @@ fileList.addEventListener('click', (e) => {
     data.type === 'folder';
   document.getElementById('detail-author').textContent = data.author;
   document.getElementById('detail-created').textContent = data.createdAt;
+  openBtn.href = `/folders/${data.id}`;
+  downloadBtn.href = `/files/${data.id}/download`;
 
   [openBtn, shareBtn, deleteBtn, downloadBtn].forEach((btn) => {
     btn.classList.add('hidden');
@@ -139,14 +141,6 @@ closePanelBtn.addEventListener('click', () => {
   document
     .querySelectorAll('.file-row.active')
     .forEach((el) => el.classList.remove('active'));
-});
-
-openBtn.addEventListener('click', () => {
-  const url = new URL(window.location.href);
-  const base = url.origin;
-  const nextUrl = `${base}/folders/${detailPanel.dataset.id}`;
-
-  window.location.href = nextUrl;
 });
 
 const headers = document.querySelectorAll('.file-header-column');
