@@ -116,14 +116,16 @@ main {
   color: var(--secondary-color);
 }
 
-.create-section .button-group {
+.main-menu .button-group {
   display: flex;
   flex-direction: column;
   gap: 5px;
   margin-bottom: 20px;
 }
 
-.create-btn {
+.menu-btn {
+  color: var(--text-color);
+  text-decoration: none;
   cursor: pointer;
   display: flex;
   padding: 7px 5px;
@@ -135,13 +137,15 @@ main {
     color ease 0.1s;
 }
 
-.create-btn:hover {
+.menu-btn:hover {
   color: var(--background-color);
   background-color: var(--text-color);
 }
 
-.create-btn i {
+.menu-btn i {
+  text-align: center;
   width: 30px;
+  margin-right: 5px;
 }
 
 .doc-section {

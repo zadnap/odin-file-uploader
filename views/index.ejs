@@ -75,18 +75,19 @@
     <main>
       <h1 class="visually-hidden">Home page</h1>
       <aside class="sidebar">
-        <section aria-labelledby="create-section-title" class="create-section">
-          <h2 id="create-section-title" class="visually-hidden">
-            Create Section
-          </h2>
+        <section aria-labelledby="main-menu-title" class="main-menu">
+          <h2 id="main-menu-title" class="visually-hidden">Main Menu</h2>
           <p class="welcome-text">
             Welcome <br /><span><%= currentUser.displayName %></span>
           </p>
           <div class="button-group" role="group" aria-label="File actions">
-            <button id="new-folder-btn" class="create-btn">
+            <a class="menu-btn" href="/documents">
+              <i class="fa-solid fa-home"></i><span>Home</span>
+            </a>
+            <button id="new-folder-btn" class="menu-btn">
               <i class="fa-solid fa-folder"></i><span>New Folder</span>
             </button>
-            <button id="new-file-btn" class="create-btn">
+            <button id="new-file-btn" class="menu-btn">
               <i class="fa-solid fa-paperclip"></i><span>New File</span>
             </button>
           </div>
