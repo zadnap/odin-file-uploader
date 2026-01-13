@@ -5,12 +5,10 @@ const detailPanel = document.querySelector('#details');
 const createFolderModal = document.querySelector('#create-folder-modal');
 const uploadFileModal = document.querySelector('#upload-file-modal');
 const deleteFileModal = document.querySelector('#delete-file-modal');
-const shareDocModal = document.querySelector('#share-doc-modal');
 
 const closeCreateModalBtn = createFolderModal.querySelector('.close-btn');
 const closeUploadModalBtn = uploadFileModal.querySelector('.close-btn');
 const closeDeleteModalBtn = deleteFileModal.querySelector('.close-btn');
-const closeShareModalBtn = shareDocModal.querySelector('.close-btn');
 
 const fileInput = document.querySelector('#file-input');
 const fileDisplay = document.querySelector('#file-display');
@@ -37,7 +35,6 @@ closeUploadModalBtn.addEventListener('click', () => {
 closeDeleteModalBtn.addEventListener('click', () =>
   closeModal(deleteFileModal)
 );
-closeShareModalBtn.addEventListener('click', () => closeModal(shareDocModal));
 
 createFolderModal.addEventListener('click', (e) => {
   if (e.target === createFolderModal) {
@@ -53,11 +50,6 @@ uploadFileModal.addEventListener('click', (e) => {
 deleteFileModal.addEventListener('click', (e) => {
   if (e.target === deleteFileModal) {
     closeModal(deleteFileModal);
-  }
-});
-shareDocModal.addEventListener('click', (e) => {
-  if (e.target === shareDocModal) {
-    closeModal(shareDocModal);
   }
 });
 
@@ -92,7 +84,6 @@ headers.forEach((btn) => {
 
 if (detailPanel) {
   const deleteBtn = document.querySelector('#delete-btn');
-  const shareBtn = document.querySelector('#share-btn');
   const downloadBtn = document.querySelector('#download-btn');
   const openBtn = document.querySelector('#open-btn');
 
@@ -101,7 +92,6 @@ if (detailPanel) {
       deleteBtn.dataset.deleteUrl;
     openModal(deleteFileModal);
   });
-  shareBtn.addEventListener('click', () => openModal(shareDocModal));
 
   const closePanelBtn = detailPanel.querySelector('.close-detail-btn');
   const fileList = document.querySelector('.file-list');
@@ -134,13 +124,12 @@ if (detailPanel) {
       data.type !== 'folder' ? `/files/${data.id}/download` : '';
     deleteBtn.dataset.deleteUrl = `${data.type === 'folder' ? '/folders' : '/files'}/${data.id}/delete`;
 
-    [openBtn, shareBtn, deleteBtn, downloadBtn].forEach((btn) => {
+    [openBtn, deleteBtn, downloadBtn].forEach((btn) => {
       btn.classList.add('hidden');
     });
 
     if (data.type === 'folder') {
       openBtn.classList.remove('hidden');
-      shareBtn.classList.remove('hidden');
       deleteBtn.classList.remove('hidden');
     } else {
       downloadBtn.classList.remove('hidden');

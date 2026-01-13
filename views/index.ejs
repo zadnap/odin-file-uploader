@@ -316,12 +316,6 @@
             Download
           </a>
           <button
-            id="share-btn"
-            class="file-action-btn <%= firstDoc.type !== 'folder' ? 'hidden' : '' %>"
-          >
-            Share
-          </button>
-          <button
             id="delete-btn"
             class="file-action-btn"
             data-delete-url="<%= (firstDoc.type === 'folder' ? '/folders/' : '/files/') + firstDoc.id + '/delete' %>"
@@ -478,77 +472,6 @@
               aria-label="Confirm file deletion"
             >
               Confirm
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div
-      id="share-doc-modal"
-      class="modal"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="share-doc-title"
-      hidden
-    >
-      <div class="modal-content">
-        <h2 id="share-doc-title" class="modal-title">Share Your Documents</h2>
-        <form
-          action="/share"
-          method="post"
-          class="create-form"
-          id="share-doc-form"
-        >
-          <div class="form-field radio-field">
-            <p class="field-label">Share duration</p>
-            <div
-              class="radio-group"
-              role="radiogroup"
-              aria-label="Share duration"
-            >
-              <label class="radio-option">
-                <input type="radio" name="share-duration" value="1" checked />
-                <span>1 day</span>
-              </label>
-              <label class="radio-option">
-                <input type="radio" name="share-duration" value="7" />
-                <span>7 days</span>
-              </label>
-              <label class="radio-option">
-                <input type="radio" name="share-duration" value="10" />
-                <span>10 days</span>
-              </label>
-              <label class="radio-option">
-                <input type="radio" name="share-duration" value="30" />
-                <span>30 days</span>
-              </label>
-            </div>
-          </div>
-          <div class="copy-field">
-            <input
-              type="text"
-              id="share-link"
-              class="copy-input"
-              value=""
-              readonly
-            />
-            <button
-              type="button"
-              class="copy-btn"
-              aria-label="Copy share link"
-              data-copy-target="share-link"
-            >
-              Copy
-            </button>
-          </div>
-          <div class="button-group" role="group" aria-label="Share actions">
-            <button class="form-btn" type="button">Get Link</button>
-            <button
-              class="form-btn close-btn"
-              type="button"
-              aria-label="Close modal"
-            >
-              Close
             </button>
           </div>
         </form>
