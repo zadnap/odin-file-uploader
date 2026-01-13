@@ -27,7 +27,11 @@ const closeModal = (modal) => {
 
 newFolderBtn.addEventListener('click', () => openModal(createFolderModal));
 newFileBtn.addEventListener('click', () => openModal(uploadFileModal));
-deleteBtn.addEventListener('click', () => openModal(deleteFileModal));
+deleteBtn.addEventListener('click', () => {
+  deleteFileModal.querySelector('#delete-file-form').action =
+    deleteBtn.dataset.deleteUrl;
+  openModal(deleteFileModal);
+});
 shareBtn.addEventListener('click', () => openModal(shareDocModal));
 
 closeCreateModalBtn.addEventListener('click', () =>
@@ -101,6 +105,7 @@ fileList.addEventListener('click', (e) => {
   document.getElementById('detail-created').textContent = data.createdAt;
   openBtn.href = `/folders/${data.id}`;
   downloadBtn.href = `/files/${data.id}/download`;
+  deleteBtn.dataset.deleteUrl = `${data.type === 'folder' ? '/folders' : '/files'}/${data.id}/delete`;
 
   [openBtn, shareBtn, deleteBtn, downloadBtn].forEach((btn) => {
     btn.classList.add('hidden');

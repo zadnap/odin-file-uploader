@@ -1,5 +1,6 @@
 import express from 'express';
 import {
+  deleteFolder,
   getFolderById,
   handleFolderValidator,
   postFolder,
@@ -10,5 +11,6 @@ const folderRouter = express.Router();
 
 folderRouter.get('/:id', getFolderById);
 folderRouter.post('/', folderValidator, handleFolderValidator, postFolder);
+folderRouter.post('/:id/delete', deleteFolder);
 
 export default folderRouter;

@@ -90,4 +90,23 @@ const postFolder = async (req, res) => {
   }
 };
 
-export { getFolderById, handleFolderValidator, postFolder };
+const deleteFolder = async (req, res) => {
+  const folderId = req.params.id;
+
+  try {
+    await prisma.folder.delete({
+      where: {
+        id: folderId,
+      },
+    });
+
+    return res.redirect('/documents');
+  } catch {
+    return res.status(400).render('error', {
+      title: 'Delete failed',
+      errorMessages: ['Cannot delete this folder'],
+    });
+  }
+};
+
+export { getFolderById, handleFolderValidator, postFolder, deleteFolder };

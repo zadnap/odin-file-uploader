@@ -327,7 +327,13 @@
             Download
           </a>
           <button id="share-btn" class="file-action-btn">Share</button>
-          <button id="delete-btn" class="file-action-btn">Delete</button>
+          <button
+            id="delete-btn"
+            class="file-action-btn"
+            data-delete-url="<%= (firstDoc.type === 'folder' ? '/folders/' : '/files/') + firstDoc.id + '/delete' %>"
+          >
+            Delete
+          </button>
         </div>
       </aside>
       <% } %>
@@ -457,7 +463,7 @@
         <h2 id="delete-file-title" class="modal-title">Upload New File</h2>
         <form action="" method="post" class="create-form" id="delete-file-form">
           <p class="prompt-question">
-            Are you sure to delete this file permanently ?
+            Are you sure to delete this document permanently ?
           </p>
           <div class="button-group" role="group">
             <button

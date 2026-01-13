@@ -119,4 +119,23 @@ const downloadFile = async (req, res) => {
   }
 };
 
-export { uploadSingleFile, postFile, downloadFile };
+const deleteFile = async (req, res) => {
+  const fileId = req.params.id;
+
+  try {
+    await prisma.file.delete({
+      where: {
+        id: fileId,
+      },
+    });
+
+    return res.redirect('/documents');
+  } catch {
+    return res.status(400).render('error', {
+      title: 'Delete failed',
+      errorMessages: ['Cannot delete this file'],
+    });
+  }
+};
+
+export { uploadSingleFile, postFile, downloadFile, deleteFile };
